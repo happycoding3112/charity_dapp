@@ -5,6 +5,7 @@ import FundCampaign from "../components/FundCampaign";
 import { getDonors, loadCampaign } from "../services/blockchain";
 import { useParams } from "react-router-dom";
 import { useGlobalState } from "../store";
+import Navbar from "../components/Navbar";
 
 const Campaign = () => {
   const { id } = useParams();
@@ -20,6 +21,7 @@ const Campaign = () => {
 
   return (
     <>
+      <Navbar />
       <CampaignDetails campaign={campaign} />
       <FundCampaign campaign={campaign} />
       <Donors donors={donors} />
