@@ -11,7 +11,7 @@ const Donors = ({ donors }) => {
                 scope="col"
                 className="text-sm font-medium px-6 py-4 text-left"
               >
-                Donator
+                Donor
               </th>
               <th
                 scope="col"
