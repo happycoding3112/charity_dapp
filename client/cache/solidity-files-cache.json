@@ -1,8 +1,8 @@
 {
   "_format": "hh-sol-cache-2",
   "files": {
-    "E:\\dapp_Charity\\src\\contracts\\Charity.sol": {
-      "lastModificationDate": 1681298435647,
+    "E:\\dapp_Charity\\client\\src\\contracts\\Charity.sol": {
+      "lastModificationDate": 1681623524815,
       "contentHash": "c73f7a7523c506c9653fc7aa6e7f393f",
       "sourceName": "src/contracts/Charity.sol",
       "solcConfig": {
