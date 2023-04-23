@@ -5,7 +5,7 @@ import { FaEthereum } from "react-icons/fa";
 
 const Card = ({ campaign }) => {
   return (
-    <div id="campaigns" className="flex bg-white rounded-lg hover:shadow-lg hover:shadow-green-300 w-80 m-4">
+    <div id="campaigns" className="flex bg-white rounded-lg hover:shadow-lg hover:shadow-green-300 w-64 m-4">
       <Link to={"/campaigns/" + campaign?.id}>
         <img
           className="rounded-lg h-64 w-full object-cover"
