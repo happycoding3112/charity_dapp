@@ -46,7 +46,7 @@ const CreateCampaign = () => {
     <div
       className={`fixed top-0 left-0 w-screen h-screen flex items-center justify-center bg-gray-900 bg-opacity-50 transform transition-transform duration-300 ${createModal}`}
     >
-      <div className="bg-white rounded-xl w-11/12 h-7/12 md:w-2/5 p-6">
+      <div className="bg-white rounded-md w-11/12 h-7/12 md:w-2/5 p-6">
         <form onSubmit={handleSubmit} className="flex flex-col">
           <div className="flex justify-between items-center">
             <p className="font-semibold">Create Campaign</p>
@@ -65,7 +65,7 @@ const CreateCampaign = () => {
             </div>
           </div>
 
-          <div className="mt-5 bg-gray-200 flex justify-between items-center rounded-xl">
+          <div className="mt-5 bg-gray-200 flex justify-between items-center rounded-md">
             <input
               className="block w-full border-0 bg-transparent p-3 focus:outline-none focus:ring-0 text-sm text-slate-500"
               type="text"
@@ -77,7 +77,7 @@ const CreateCampaign = () => {
             />
           </div>
 
-          <div className="mt-5 bg-gray-200 flex justify-between items-center rounded-xl">
+          <div className="mt-5 bg-gray-200 flex justify-between items-center rounded-md">
             <input
               className="block w-full border-0 bg-transparent p-3 focus:outline-none focus:ring-0 text-sm text-slate-500"
               type="number"
@@ -91,7 +91,7 @@ const CreateCampaign = () => {
             />
           </div>
 
-          <div className="mt-5 bg-gray-200 flex justify-between items-center rounded-xl">
+          <div className="mt-5 bg-gray-200 flex justify-between items-center rounded-md">
             <input
               className="block w-full border-0 bg-transparent p-3 focus:outline-none focus:ring-0 text-sm text-slate-500"
               type="date"
@@ -103,7 +103,7 @@ const CreateCampaign = () => {
             />
           </div>
 
-          <div className="mt-5 bg-gray-200 flex justify-between items-center rounded-xl">
+          <div className="mt-5 bg-gray-200 flex justify-between items-center rounded-md">
             <input
               className="block w-full border-0 bg-transparent p-3 focus:outline-none focus:ring-0 text-sm text-slate-500"
               type="text"
@@ -115,10 +115,9 @@ const CreateCampaign = () => {
             />
           </div>
 
-          <div className="mt-5 bg-gray-200 flex justify-between items-center rounded-xl">
+          <div className="mt-5 bg-gray-200 flex justify-between items-center rounded-md">
             <textarea
               className="block w-full border-0 bg-transparent p-3 focus:outline-none focus:ring-0 text-sm text-slate-500"
-              type="text"
               name="description"
               onChange={(e) => setDescription(e.target.value)}
               value={description}
