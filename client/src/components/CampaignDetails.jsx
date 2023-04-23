@@ -10,7 +10,7 @@ const CampaignDetails = ({ campaign }) => {
         <div className="flex justify-start items-start flex-wrap space-x-4">
           <div>
             <img
-              className="rounded-xl h-64 object-cover w-full"
+              className="rounded-xl h-64 object-cover"
               src={campaign?.imageURL}
               alt={campaign?.imageURL}
             />
@@ -57,23 +57,23 @@ const CampaignDetails = ({ campaign }) => {
                 <span>{campaign?.cost} ETH</span>
               </small>
             </div>
-            <div className="flex justify-center items-center mt-2 mb-2 space-x-2">
-              <button className="leading-tight shadow-md uppercase font-semibold text-sm inline-block text-white bg-green-500 hover:bg-green-600 rounded-md px-6 py-2.5"
-                onClick={() => setGlobalState("fundModal", "scale-100")}>
-                donate
-              </button>
-              <button className="leading-tight shadow-md uppercase font-semibold text-sm inline-block text-white bg-gray-500 hover:bg-gray-600 rounded-md px-6 py-2.5">
-                edit
-              </button>
-              <button className="leading-tight shadow-md uppercase font-semibold text-sm inline-block text-white bg-red-500 hover:bg-red-600 rounded-md px-6 py-2.5">
-                delete
-              </button>
-              <button className="leading-tight shadow-md uppercase font-semibold text-sm inline-block text-white bg-orange-500 hover:bg-orange-600 rounded-md px-6 py-2.5">
-                payout
-              </button>
-            </div>
           </div>
+        </div>
 
+        <div className="flex justify-center items-center mt-6 mb-2 space-x-2">
+          <button className="leading-tight shadow-md uppercase font-semibold text-sm inline-block text-white bg-green-500 hover:bg-green-600 rounded-md px-6 py-2.5"
+            onClick={() => setGlobalState("fundModal", "scale-100")}>
+            donate
+          </button>
+          <button className="leading-tight shadow-md uppercase font-semibold text-sm inline-block text-white bg-gray-500 hover:bg-gray-600 rounded-md px-6 py-2.5">
+            edit
+          </button>
+          <button className="leading-tight shadow-md uppercase font-semibold text-sm inline-block text-white bg-red-500 hover:bg-red-600 rounded-md px-6 py-2.5">
+            delete
+          </button>
+          <button className="leading-tight shadow-md uppercase font-semibold text-sm inline-block text-white bg-orange-500 hover:bg-orange-600 rounded-md px-6 py-2.5">
+            payout
+          </button>
         </div>
 
       </div>
