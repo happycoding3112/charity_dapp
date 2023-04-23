@@ -6,6 +6,8 @@ const { setGlobalState, useGlobalState, getGlobalState } = createGlobalState({
   updateModal: "scale-0",
   deleteModal: "scale-0",
   fundModal: "scale-0",
+  registerModal: "scale-100",
+  loginModal: "scale-100",
   connectedAccount: "",
   contract: "",
   campaigns: [],
