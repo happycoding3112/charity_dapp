@@ -11,13 +11,13 @@ const Hero = () => {
       </h1>
       <h1 className="text-4xl tracking-tight font-bold mb-6">
         If you are an NGO you can{" "}
-        <Link to="/">
+        <Link to="/registerNGO">
           <span className="text-blue-600 hover:text-green-400 underline cursor-pointer">
             Register
           </span>
         </Link>{" "}
         or{" "}
-        <Link to="/">
+        <Link to="/ngoLogin">
           <span className="text-blue-600 hover:text-green-400 underline cursor-pointer">
             Login
           </span>
