@@ -2,6 +2,8 @@ import { Link, useNavigate } from "react-router-dom"
 import { setGlobalState } from "../store"
 import { FaTimes } from "react-icons/fa"
 import { useState } from "react"
+import { toast } from "react-toastify"
+import axios from "axios"
 
 const Login = () => {
 
@@ -19,7 +21,29 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(inputs);
+    try {
+      const url = "http://localhost:8080/api/login/ngoLogin";
+
+      const { data: res } = await axios.post(url, inputs)
+
+      if (res.success) {
+        localStorage.setItem("authToken", res.jwtToken)
+        localStorage.setItem("user", JSON.stringify(res.userData))
+        toast.success(res.message);
+        navigate("/")
+      }
+
+    } catch (err) {
+      if (err.response && err.response.status == 401) {
+        toast.warn(err.response.data.message)
+      }
+      if (err.response && err.response.status == 400) {
+        toast.error(err.response.data.message)
+      }
+      if (err.response && err.response.status == 405) {
+        toast.info(err.response.data.message)
+      }
+    }
   }
 
   const onClose = (e) => {
@@ -35,7 +59,7 @@ const Login = () => {
       <div className="bg-white rounded-xl w-11/12 h-7/12 md:w-2/6 p-6">
         <form onSubmit={handleSubmit} className="flex flex-col mb-4">
           <div className="flex justify-between items-center">
-            <p>LOGIN</p>
+            <p className="font-medium">LOGIN</p>
             <button onClick={onClose}>
               <FaTimes />
             </button>
@@ -44,9 +68,9 @@ const Login = () => {
           <div className="flex justify-between items-center bg-gray-200 rounded-md mt-5">
             <input
               className="block w-full border-0 bg-transparent p-3 focus:outline-none focus:ring-0 text-sm text-slate-500" type="text"
-              name="name"
+              name="email"
               onChange={handleChange}
-              placeholder="NGO Name"
+              placeholder="NGO email"
               required
             />
           </div>
@@ -69,8 +93,10 @@ const Login = () => {
 
         <div className="flex flex-col gap-1">
           <span className="font-semibold text-sm">Not Registered?</span>
-          <span className="font-semibold text-sm hover:underline hover:text-blue-700">
-            <Link to={"/registerNGO"}>Click here to Register</Link>
+          <span className="font-semibold text-sm">
+            <Link className="hover:underline hover:text-blue-700" to={"/registerNGO"}>
+              Click here to go to Registration Page
+            </Link>
           </span>
         </div>
 
@@ -79,4 +105,4 @@ const Login = () => {
   )
 }
 
-export default Login
+export default Login;
