@@ -1,12 +1,18 @@
 import { useEffect, useState } from "react";
 import { FaSearch } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import { connectWallet, isWalletConnected } from "../services/blockchain";
+import { connectWallet } from "../services/blockchain";
 import { useGlobalState, truncate } from "../store";
 
 const Navbar = () => {
   const [connectedAccount] = useGlobalState("connectedAccount");
   const [loggedIn, setLoggedIn] = useState(false);
+
+  const handleLogout = () => {
+    localStorage.removeItem("user")
+    localStorage.removeItem("authToken")
+    window.location.replace("/")
+  }
 
   useEffect(() => {
     if (localStorage.getItem("user")) setLoggedIn(true)
@@ -29,11 +35,15 @@ const Navbar = () => {
         <div className="flex items-center gap-5 text-gray-300 font-bold ml-2">
           {loggedIn ? (
             <span className="cursor-pointer hover:bg-gray-700 hover:text-white rounded-md px-2 py-2">
-              Your Campaigns
+              <Link to="/">
+                Your Campaigns
+              </Link>
             </span>
           ) : (
             <span className="cursor-pointer hover:bg-gray-700 hover:text-white rounded-md px-2 py-2">
-              All Campaigns
+              <Link to="/">
+                All Campaigns
+              </Link>
             </span>
           )}
         </div>
@@ -45,7 +55,10 @@ const Navbar = () => {
             Connect Wallet
           </button>)}
           {loggedIn ? (
-            <button className="hover:bg-gray-700 hover:text-white rounded-md px-2 py-2 mr-2">
+            <button
+              className="hover:bg-gray-700 hover:text-white rounded-md px-2 py-2 mr-2"
+              onClick={handleLogout}
+            >
               Logout
             </button>
           ) : null}
