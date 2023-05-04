@@ -1,4 +1,7 @@
 const { con } = require("../config/dbConnection.js");
+const { approvalMsg } = require("../email_templates/approval.js");
+const { rejectionMsg } = require("../email_templates/rejection.js");
+const sendEmail = require("../utils/sendEmail.js");
 
 const getNGOs = (req, res) => {
   const q = "SELECT * FROM ngo";
@@ -27,12 +30,14 @@ const approveNGO = (req, res) => {
         .status(500)
         .send({ message: "Server Error, Please try again later!" });
 
+    sendEmail(email, "Cause✌️Care: NGO Approved", "HELLO!", approvalMsg);
+
     return res.status(200).send({ message: "Verified" });
   });
 };
 
 const deleteNGO = (req, res) => {
-  const { id } = req.body;
+  const { id, email } = req.body;
 
   const q = "DELETE FROM ngo WHERE(`id` = ?)";
 
@@ -41,6 +46,8 @@ const deleteNGO = (req, res) => {
       return res
         .status(500)
         .send({ message: "Server Error, Please try again later!" });
+
+    sendEmail(email, "Cause✌️Care: NGO Rejected", "HELLO!", rejectionMsg);
 
     return res.status(200).send({ message: "NGO Deleted Successfully" });
   });
