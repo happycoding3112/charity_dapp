@@ -27,7 +27,16 @@ const ngoLogin = (req, res) => {
         });
 
       if (data[0].isVerified === "true") {
-        const token = jwt.sign();
+        const token = jwt.sign({ id: data[0].id }, process.env.JWT_SECRET_KEY, {
+          expiresIn: "2d",
+        });
+
+        return res.status(200).send({
+          success: true,
+          message: "You are logged in!",
+          jwtToken: token,
+          userData: { name: data[0].name, role: data[0].role },
+        });
       }
     }
   });
