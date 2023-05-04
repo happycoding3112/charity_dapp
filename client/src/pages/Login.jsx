@@ -8,7 +8,7 @@ import axios from "axios"
 const Login = () => {
 
   const [inputs, setInputs] = useState({
-    name: "",
+    email: "",
     password: "",
   })
 
@@ -30,7 +30,9 @@ const Login = () => {
         localStorage.setItem("authToken", res.jwtToken)
         localStorage.setItem("user", JSON.stringify(res.userData))
         toast.success(res.message);
-        navigate("/")
+        if (res.userData.role === "admin") navigate("/admin")
+        else navigate("/")
+        window.location.reload()
       }
 
     } catch (err) {
@@ -70,7 +72,7 @@ const Login = () => {
               className="block w-full border-0 bg-transparent p-3 focus:outline-none focus:ring-0 text-sm text-slate-500" type="text"
               name="email"
               onChange={handleChange}
-              placeholder="NGO email"
+              placeholder="NGO Email"
               required
             />
           </div>
