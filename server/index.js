@@ -2,8 +2,10 @@ const express = require("express");
 require("dotenv").config();
 const multer = require("multer");
 const cors = require("cors");
+const nodemailer = require("nodemailer");
 const registerRoutes = require("./routes/register");
 const adminRoutes = require("./routes/admin");
+const loginRoutes = require("./routes/login.js");
 
 const app = express();
 
@@ -31,6 +33,7 @@ app.post("/api/upload", upload.single("file"), (req, res) => {
 // Routes
 app.use("/api/register", registerRoutes);
 app.use("/api/admin", adminRoutes);
+app.use("/api/login", loginRoutes);
 
 app.listen("8080", () => {
   console.log("App started!");
