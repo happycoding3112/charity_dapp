@@ -1,4 +1,3 @@
-
 const msg = `
  <div>
   <h1 style="text-align:center" >Let's make a better world :)</h1>
