@@ -16,7 +16,7 @@ const Register = () => {
     name: "",
     email: "",
     establishedDate: "",
-    description: "",
+    ngoAddress: "",
     password: "",
   })
 
@@ -174,9 +174,9 @@ const Register = () => {
           <div className="flex justify-between items-center bg-gray-200 rounded-md mt-5">
             <textarea
               className="block w-full border-0 bg-transparent p-3 focus:outline-none focus:ring-0 text-sm text-slate-500"
-              name="description"
+              name="ngoAddress"
               onChange={handleChange}
-              placeholder="Please tell us about the vision of your NGO"
+              placeholder="Please enter office address of your NGO"
               required
             ></textarea>
           </div>
