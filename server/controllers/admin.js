@@ -20,7 +20,7 @@ const getNGOs = (req, res) => {
 };
 
 const approveNGO = (req, res) => {
-  const { id } = req.body;
+  const { id, email } = req.body;
 
   const q = "UPDATE ngo SET `isVerified` = 'true' WHERE(`id` = ?)";
 
