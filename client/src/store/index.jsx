@@ -11,6 +11,7 @@ const { setGlobalState, useGlobalState, getGlobalState } = createGlobalState({
   connectedAccount: "",
   contract: "",
   campaigns: [],
+  userCampaigns: [],
   campaign: null,
   stats: null,
   donors: [],
