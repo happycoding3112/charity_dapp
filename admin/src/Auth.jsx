@@ -10,7 +10,6 @@ const Auth = ({ children }) => {
     const fetchUser = () => {
       if (localStorage.getItem("authToken")) {
         const userData = localStorage.getItem("user");
-        console.log(userData);
         setCurrentUser(userData);
       } else {
         setCurrentUser(null)
