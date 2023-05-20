@@ -5,7 +5,8 @@ import FundCampaign from "../components/FundCampaign";
 import { getDonors, loadCampaign } from "../services/blockchain";
 import { useParams } from "react-router-dom";
 import { useGlobalState } from "../store";
-import Navbar from "../components/Navbar";
+import DeleteCampaign from "../components/DeleteCampaign";
+import EditCampaign from "../components/EditCampaign";
 
 const Campaign = () => {
   const { id } = useParams();
@@ -15,15 +16,14 @@ const Campaign = () => {
   useEffect(async () => {
     await loadCampaign(id);
     await getDonors(id);
-  }, [])
-
-  console.log(donors)
+  }, [donors])
 
   return (
     <>
-      <Navbar />
       <CampaignDetails campaign={campaign} />
       <FundCampaign campaign={campaign} />
+      <DeleteCampaign campaign={campaign} />
+      <EditCampaign campaign={campaign} />
       <Donors donors={donors} />
     </>
   );
