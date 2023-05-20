@@ -8,7 +8,6 @@ import '@react-pdf-viewer/default-layout/lib/styles/index.css';
 
 const Ngo = ({ ngo }) => {
   const approveNGO = async (ngoID, ngoEmail) => {
-    console.log("hello")
     try {
       const url = "http://localhost:8080/api/admin/approveNGO";
 
