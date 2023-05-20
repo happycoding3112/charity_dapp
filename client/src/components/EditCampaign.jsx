@@ -12,8 +12,6 @@ const EditCampaign = ({ campaign }) => {
   const [date, setDate] = useState(new Date(campaign?.deadline));
   const [image, setImage] = useState(campaign?.imageURL);
 
-  console.log(date)
-
   const toTimeStamp = (date) => {
     const dateObj = Date.parse(date);
     return dateObj / 1000;
