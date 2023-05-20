@@ -1,0 +1,21 @@
+For the code to work properly, please make a .env file and add the following fields to your file:-
+
+DB_HOST = <your_host_name>
+
+DB_USERNAME = <db_user_name>
+
+DB_PASSWORD = <db_password>
+
+DB_NAME = <name_of_your_db>
+
+JWT_SECRET_KEY = <random_string_for_password_encryption>  
+
+PASS = <password_for_nodeMailer> 
+
+USER = <any_email_id_from_which_you_will_send_emails_to_NGOs>
+
+EMAIL_PORT = <port_number_for_running_nodemailer>
+
+SECURE = <option_for_ensuring_secure_mailing>
+
+HOST = "smtp.gmail.com"
