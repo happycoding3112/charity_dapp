@@ -14,7 +14,6 @@ const DeleteCampaign = ({ campaign }) => {
     e.preventDefault()
 
     await deleteCampaign(campaign?.id)
-    console.log("Hello")
     toast.success("Campaign Deleted Successfully, will be reflected in 30 secs!")
     setGlobalState("deleteModal", "scale-0")
     navigate("/")
