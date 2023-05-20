@@ -57,8 +57,6 @@ const Register = () => {
 
       toast.success(res.message)
 
-      console.log(res.message);
-
     } catch (err) {
       if (err.response && err.response.status >= 400 && err.response.status <= 500) {
         toast.error(err.response.data)
@@ -74,7 +72,7 @@ const Register = () => {
 
   return (
     <div
-      className="`fixed top-0 left-0 w-screen h-screen flex items-center justify-center bg-gray-900 bg-opacity-50 transform transition-transform duration-300 scale-100"
+      className="fixed top-0 left-0 w-screen h-screen flex items-center justify-center bg-gray-900 bg-opacity-100 transform transition-transform duration-300 scale-100 z-50"
     >
       <div className="bg-white rounded-xl w-11/12 h-7/12 md:w-2/6 p-6">
         <form onSubmit={handleSubmit} className="flex flex-col mb-4">
