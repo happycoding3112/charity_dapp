@@ -130,13 +130,20 @@ const CampaignDetails = ({ campaign }) => {
                       delete
                     </button>
                   </>
-                ) : (
-                  <button className="leading-tight shadow-md uppercase font-semibold text-sm inline-block text-white bg-gray-600 hover:bg-gray-700 rounded-md px-6 py-2.5">
-                    Campaign Closed
-                  </button>
-                )
-            ) : null
+                ) : null
+            ) : (
+              <button className="leading-tight shadow-md uppercase font-semibold text-sm inline-block text-white bg-gray-600 hover:bg-gray-700 rounded-md px-6 py-2.5">
+                Campaign Closed
+              </button>
+            )
           )}
+
+          {(!user && (expired || campaign?.status == 3)) && (
+            <button className="leading-tight shadow-md uppercase font-semibold text-sm inline-block text-white bg-gray-600 hover:bg-gray-700 rounded-md px-6 py-2.5">
+              Campaign Closed
+            </button>
+          )}
+
         </div>
 
       </div>
