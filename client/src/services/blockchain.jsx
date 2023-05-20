@@ -78,6 +78,32 @@ const createCampaign = async ({
   }
 }
 
+const updateCampaign = async ({
+  id,
+  title,
+  description,
+  imageURL,
+  deadline
+}) => {
+  try {
+    const contract = await getEthereumContract()
+    await contract.updateCampaign(id, title, description, imageURL, deadline)
+  } catch (err) {
+    reportError(err)
+  }
+}
+
+const deleteCampaign = async (id) => {
+  try {
+    if (!ethereum) return alert('Please install Metamask')
+    
+    const contract = await getEthereumContract()
+    await contract.deleteCampaign(id)
+  } catch (err) {
+    reportError(err)
+  }
+}
+
 const loadCampaigns = async () => {
   try {
     // if (!ethereum) return alert('Please install Metamask')
@@ -164,7 +190,6 @@ const toDate = (timestamp) => {
 }
 
 const reportError = (error) => {
-  console.log(error.message)
   throw new Error('No ethereum object.')
 }
 
@@ -189,6 +214,8 @@ export {
   connectWallet,
   isWalletConnected,
   createCampaign,
+  updateCampaign,
+  deleteCampaign,
   loadCampaigns,
   loadCampaign,
   fundCampaign,
