@@ -3,6 +3,7 @@ import { useGlobalState, setGlobalState } from "../store";
 import { useState } from "react";
 import { createCampaign } from "../services/blockchain";
 import { toast } from "react-toastify";
+import axios from "axios"
 
 const CreateCampaign = () => {
   const [createModal] = useGlobalState("createModal");
@@ -10,25 +11,38 @@ const CreateCampaign = () => {
   const [description, setDescription] = useState("");
   const [cost, setCost] = useState("");
   const [date, setDate] = useState("");
-  const [imageURL, setImageURL] = useState("");
+  const [image, setImage] = useState(null);
 
   const toTimeStamp = (date) => {
     const dateObj = Date.parse(date);
     return dateObj / 1000;
   };
 
+  const uploadFile = async (file) => {
+    try {
+      const formdata = new FormData()
+      formdata.append("file", file)
+      const url = "http://localhost:8080/api/upload/campaignImage"
+      const res = await axios.post(url, formdata)
+      return res.data
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    const imageURL = await uploadFile(image)
 
     const userInput = {
       title,
       description,
-      imageURL,
       cost,
       deadline: toTimeStamp(date),
     }
 
-    await createCampaign(userInput);
+    await createCampaign({ ...userInput, imageURL });
     toast.success("Campaign created successfully, will reflect within 30 secs!");
     onClose();
   }
@@ -37,14 +51,13 @@ const CreateCampaign = () => {
     setGlobalState("createModal", "scale-0");
     setTitle("");
     setDescription("");
-    setImageURL("");
     setDate("");
     setCost("");
   }
 
   return (
     <div
-      className={`fixed top-0 left-0 w-screen h-screen flex items-center justify-center bg-gray-900 bg-opacity-50 transform transition-transform duration-300 ${createModal}`}
+      className={`fixed top-0 left-0 w-screen h-screen flex items-center justify-center bg-gray-900 bg-opacity-50 transform transition-transform duration-300 z-50 ${createModal}`}
     >
       <div className="bg-white rounded-md w-11/12 h-7/12 md:w-2/5 p-6">
         <form onSubmit={handleSubmit} className="flex flex-col">
@@ -58,8 +71,8 @@ const CreateCampaign = () => {
           <div className="flex justify-center items-center mt-5">
             <div className="rounded-md overflow-hidden h-52 w-full object-cover">
               <img
-                src={imageURL || "https://burrelles.com/wp-content/uploads/2022/12/GivingInaToughEconomy-mainV.jpg"}
-                alt=""
+                src="https://burrelles.com/wp-content/uploads/2022/12/GivingInaToughEconomy-mainV.jpg"
+                alt="https://burrelles.com/wp-content/uploads/2022/12/GivingInaToughEconomy-mainV.jpg"
                 className="w-full h-full object-cover"
               />
             </div>
@@ -103,16 +116,28 @@ const CreateCampaign = () => {
             />
           </div>
 
-          <div className="mt-5 bg-gray-200 flex justify-between items-center rounded-md">
-            <input
-              className="block w-full border-0 bg-transparent p-3 focus:outline-none focus:ring-0 text-sm text-slate-500"
-              type="text"
-              name="imageURL"
-              onChange={(e) => setImageURL(e.target.value)}
-              value={imageURL}
-              placeholder="Image Supporting your Cause"
-              required
-            />
+          <div className="flex justify-between items-center bg-gray-200 rounded-md mt-5 px-4">
+            <table className="w-full">
+              <tbody>
+                <tr>
+                  <td className="w-5/12 border-r-2 border-blue-600">
+                    <p className="text-slate-500 text-sm">Image for your Campaign</p></td>
+                  <td>
+                    <input
+                      className="block w-full border-0 bg-transparent p-3 focus:outline-none focus:ring-0 text-sm text-slate-500"
+                      type="file"
+                      accept="image/*"
+                      name="image"
+                      onChange={(e) => {
+                        setImage(e.target.files[0])
+                      }}
+                      placeholder="Image Supporting your Cause"
+                      required
+                    />
+                  </td>
+                </tr>
+              </tbody>
+            </table>
           </div>
 
           <div className="mt-5 bg-gray-200 flex justify-between items-center rounded-md">
