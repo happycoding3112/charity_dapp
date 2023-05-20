@@ -33,8 +33,8 @@ const FundCampaign = ({ campaign }) => {
           <div className="flex justify-center items-center mt-5">
             <div className="rounded-xl overflow-hidden h-60 w-60">
               <img
-                src={campaign?.imageURL}
-                alt={campaign?.imageURL}
+                src={"/clientUploads/" + campaign?.imageURL}
+                alt={"/clientUploads/" + campaign?.imageURL}
                 className="w-full h-full object-cover"
               />
             </div>
