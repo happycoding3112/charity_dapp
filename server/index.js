@@ -16,7 +16,16 @@ app.use(cors());
 // Multer file upload
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, "../client/public/uploads");
+    cb(null, "../admin/public/uploads");
+  },
+  filename: function (req, file, cb) {
+    cb(null, Date.now() + file.originalname);
+  },
+});
+
+const imageStorage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, "../client/public/clientUploads");
   },
   filename: function (req, file, cb) {
     cb(null, Date.now() + file.originalname);
@@ -25,7 +34,14 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 
+const uploadImg = multer({ storage: imageStorage });
+
 app.post("/api/upload", upload.single("file"), (req, res) => {
+  const file = req.file;
+  return res.status(200).json(file.filename);
+});
+
+app.post("/api/upload/campaignImage", uploadImg.single("file"), (req, res) => {
   const file = req.file;
   return res.status(200).json(file.filename);
 });
