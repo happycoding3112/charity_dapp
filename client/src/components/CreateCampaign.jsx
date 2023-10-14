@@ -12,6 +12,7 @@ const CreateCampaign = () => {
 	const [cost, setCost] = useState('');
 	const [date, setDate] = useState('');
 	const [image, setImage] = useState(null);
+	const [proof, setProof] = useState(null);
 
 	const toTimeStamp = (date) => {
 		const dateObj = Date.parse(date);
@@ -34,6 +35,7 @@ const CreateCampaign = () => {
 		e.preventDefault();
 
 		const imageURL = await uploadFile(image);
+		const proofURL = await uploadFile(proof);
 
 		const userInput = {
 			title,
@@ -42,7 +44,7 @@ const CreateCampaign = () => {
 			deadline: toTimeStamp(date),
 		};
 
-		await createCampaign({ ...userInput, imageURL });
+		await createCampaign({ ...userInput, imageURL, proofURL });
 		toast.success(
 			'Campaign created successfully, will reflect within 30 secs!',
 		);
@@ -70,7 +72,7 @@ const CreateCampaign = () => {
 						</button>
 					</div>
 
-					<div className='flex justify-center items-center mt-5'>
+					{/* <div className='flex justify-center items-center mt-5'>
 						<div className='rounded-md overflow-hidden h-52 w-full object-cover'>
 							<img
 								src='https://burrelles.com/wp-content/uploads/2022/12/GivingInaToughEconomy-mainV.jpg'
@@ -78,7 +80,7 @@ const CreateCampaign = () => {
 								className='w-full h-full object-cover'
 							/>
 						</div>
-					</div>
+					</div> */}
 
 					<div className='mt-5 bg-gray-200 flex justify-between items-center rounded-md'>
 						<input
@@ -152,6 +154,33 @@ const CreateCampaign = () => {
 												setImage(e.target.files[0]);
 											}}
 											placeholder='Image Supporting your Cause'
+											required
+										/>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+
+					<div className='flex justify-between items-center bg-gray-200 rounded-md mt-5 px-4'>
+						<table className='w-full'>
+							<tbody>
+								<tr>
+									<td className='w-5/12 border-r-2 border-blue-600'>
+										<p className='text-slate-500 text-sm'>
+											Upload proof for campaign
+										</p>
+									</td>
+									<td>
+										<input
+											className='block w-full border-0 bg-transparent p-3 focus:outline-none focus:ring-0 text-sm text-slate-500'
+											type='file'
+											accept='.pdf'
+											name='proof'
+											onChange={(e) => {
+												setProof(e.target.files[0]);
+											}}
+											placeholder='Proof Supporting your Cause'
 											required
 										/>
 									</td>

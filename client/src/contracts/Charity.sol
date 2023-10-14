@@ -30,6 +30,7 @@ contract Charity {
         string title;
         string description;
         string imageURL;
+        string proofURL;
         uint cost;
         uint raised;
         uint deadline;
@@ -120,12 +121,14 @@ contract Charity {
         string memory title,
         string memory description,
         string memory imageURL,
+        string memory proofURL,
         uint cost,
         uint deadline
     ) public returns (bool) {
         require(bytes(title).length > 0, "Title cannot be empty");
         require(bytes(description).length > 0, "Description cannot be empty");
         require(bytes(imageURL).length > 0, "Image cannot be empty");
+        require(bytes(proofURL).length > 0, "Please upload some document for Proof");
         require(cost > 0 ether, "Cost cannot be zero");
 
         campaignStruct memory campaign;
@@ -134,6 +137,7 @@ contract Charity {
         campaign.title = title;
         campaign.description = description;
         campaign.imageURL = imageURL;
+        campaign.proofURL = proofURL;
         campaign.cost = cost;
         campaign.deadline = deadline;
         campaign.timestamp = block.timestamp;
