@@ -1,3 +1,5 @@
+<!-- .env Configuration --!>
+
 For the code to work properly, please make a .env file and add the following fields to your file:-
 
 DB_HOST = <your_host_name>
@@ -8,9 +10,9 @@ DB_PASSWORD = <db_password>
 
 DB_NAME = <name_of_your_db>
 
-JWT_SECRET_KEY = <random_string_for_password_encryption>  
+JWT_SECRET_KEY = <random_string_for_password_encryption>
 
-PASS = <password_for_nodeMailer> 
+PASS = <password_for_nodeMailer>
 
 USER = <any_email_id_from_which_you_will_send_emails_to_NGOs>
 
@@ -19,3 +21,24 @@ EMAIL_PORT = <port_number_for_running_nodemailer>
 SECURE = <option_for_ensuring_secure_mailing>
 
 HOST = "smtp.gmail.com"
+
+<!-- SQL Script for creating TABLE to store NGO registration details --!>
+
+Go to MySQL workbench and run the following script -
+
+
+CREATE TABLE `ngo` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `name` varchar(500) NOT NULL,
+  `email` varchar(500) NOT NULL,
+  `proof` varchar(500) NOT NULL,
+  `annualReport` varchar(500) NOT NULL,
+  `establishedDate` date NOT NULL,
+  `ngoAddress` varchar(500) NOT NULL,
+  `password` varchar(500) NOT NULL,
+  `isVerified` varchar(45) NOT NULL DEFAULT 'false',
+  `role` varchar(45) DEFAULT 'ngo',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+
+Create an admin with custom credentials in the workbench itself. You can use this credentials to login as admin and verify NGOs from the admin app.
