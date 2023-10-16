@@ -135,7 +135,7 @@ OR
 yarn install
 ```
 
-- #### To strart the admin app
+- #### To start the admin app
 
 ```
 yarn run dev
